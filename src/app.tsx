@@ -1,8 +1,9 @@
-import * as ReactDOM from 'react-dom';
-import {Preprocess} from "./views/preprocess";
+import { createRoot } from 'react-dom/client'
+import { Preprocess } from './views/preprocess'
 
 const App = () => {
   return <Preprocess />
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const root = createRoot(document.getElementById('app'))
+root.render(<App />)
