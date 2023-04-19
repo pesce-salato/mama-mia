@@ -1,8 +1,14 @@
 import { createRoot } from 'react-dom/client'
-import { Preprocess } from './views/preprocess'
+import { ChakraProvider } from '@chakra-ui/react'
+import { MemoryRouter } from 'react-router-dom'
+import { routes } from './routes'
 
 const App = () => {
-  return <Preprocess />
+  return (
+    <ChakraProvider>
+      <MemoryRouter initialEntries={['/preprocess']}>{routes}</MemoryRouter>
+    </ChakraProvider>
+  )
 }
 
 const root = createRoot(document.getElementById('app'))
