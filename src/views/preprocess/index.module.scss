@@ -1,0 +1,12 @@
+@import "@/ui/define.scss";
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  -webkit-app-region: drag;
+
+  .animation {
+    padding: 0 32px;
+    width: 320px;
+  }
+}

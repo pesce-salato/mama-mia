@@ -2,6 +2,7 @@ import type { Configuration } from 'webpack'
 
 import { rules } from './webpack.rules'
 import { plugins } from './webpack.plugins'
+import { alias } from './webpack.alias'
 
 rules.push({
   test: /\.css$/,
@@ -14,6 +15,7 @@ export const rendererConfig: Configuration = {
   },
   plugins,
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', 'scss'],
+    alias,
   },
 }

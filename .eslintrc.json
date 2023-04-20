@@ -15,10 +15,14 @@
     "plugin:prettier/recommended"
   ],
   "rules": {
-    "prettier/prettier": ["error", {
-      "semi": false,
-      "singleQuote": true
-    }]
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "singleQuote": true
+      }
+    ],
+    "import/no-unresolved": "off"
   },
   "parser": "@typescript-eslint/parser"
 }

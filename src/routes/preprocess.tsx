@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom'
-import { Preprocess } from '../views/preprocess'
+import { Preprocess } from '@/views/preprocess'
 
 export const preprocess = (
   <>

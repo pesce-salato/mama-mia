@@ -1,0 +1,97 @@
+@use 'sass:math';
+@import "@/ui/define.scss";
+
+.scrollbar {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+
+  .wrapper {
+    width: fit-content;
+    height: fit-content;
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  $thumb-size: 8px;
+  $rail-opacity: 0.8;
+  $thumb-background: var(--chakra-colors-gray-300);
+  $thumb-active-background: var(--chakra-colors-gray-500);
+  $transition: opacity 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+  &.keep-visible.priority {
+    & > :global(.ps__rail-y),
+    & > :global(.ps__rail-x) {
+      opacity: $rail-opacity;
+    }
+  }
+
+  &.priority {
+    :global(.ps__thumb-y),
+    :global(.ps__thumb-x) {
+      background-color: $thumb-background;
+    }
+
+    & > :global(.ps__rail-y),
+    & > :global(.ps__rail-x) {
+      background-color: transparent !important;
+    }
+
+    &:hover,
+    &:focus {
+      & > :global(.ps__rail-y),
+      & > :global(.ps__rail-x) {
+        opacity: $rail-opacity;
+      }
+    }
+
+    & > :global(.ps__rail-y),
+    :global(.ps__thumb-y) {
+      width: $thumb-size;
+      border-radius: math.div($thumb-size, 2);
+      right: 0;
+      transition: $transition;
+    }
+
+    & > :global(.ps__rail-y):hover,
+    & > :global(.ps__rail-y):focus,
+    & > :global(.ps__rail-y).ps--clicking {
+      width: $thumb-size;
+      opacity: $rail-opacity;
+
+      :global(.ps__thumb-y) {
+        width: $thumb-size;
+        right: 0;
+        background-color: $thumb-active-background;
+      }
+    }
+
+    & > :global(.ps__rail-x),
+    :global(.ps__thumb-x) {
+      height: $thumb-size;
+      border-radius: math.div($thumb-size,2);
+      bottom: 0;
+      transition: $transition;
+    }
+
+    & > :global(.ps__rail-x):hover,
+    & > :global(.ps__rail-x):focus,
+    & > :global(.ps__rail-x).ps--clicking {
+      height: $thumb-size;
+      opacity: $rail-opacity;
+
+      :global(.ps__thumb-x) {
+        height: $thumb-size;
+        bottom: 0;
+        background-color: $thumb-active-background;
+      }
+    }
+  }
+
+  &.only-scroll-visible.priority {
+    &:not(:global(.ps--scrolling-y)) > :global(.ps__rail-y):not(:hover):not(:focus),
+    &:not(:global(.ps--scrolling-x)) > :global(.ps__rail-x):not(:hover):not(:focus) {
+      opacity: 0;
+    }
+  }
+}
