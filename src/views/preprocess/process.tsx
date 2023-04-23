@@ -2,21 +2,16 @@ import { MutableRefObject, useEffect, useState } from 'react'
 import { TaskExecutorRef } from '@/views/preprocess/task-executor'
 import { getExposed } from '@/utils/get-exposed'
 import { useTranslation } from 'react-i18next'
-import { AppIcon } from '@/resources/icons/app'
-import { Box, Icon } from '@chakra-ui/react'
-import { HiOutlineChip } from 'react-icons/hi'
+import { Icon } from '@chakra-ui/react'
+import { HiOutlineChip, HiOutlineHashtag } from 'react-icons/hi'
 import { waitUtilRegisterEventTriggered } from '@/utils/render-event/wait-util-register-event-triggered'
 import { throttle } from 'lodash'
 
 const services = getExposed().services
 
-const AppIconBox = (
-  <Box color="gray.800" width="100%" height="100%">
-    <AppIcon />
-  </Box>
-)
+const AppIconBox = <Icon color="purple.500" as={HiOutlineHashtag} />
 
-const ExecutorIcon = <Icon color="purple.500" as={HiOutlineChip} />
+const ExecutorIcon = <Icon color="cyan.500" as={HiOutlineChip} />
 
 export const useProcess = (executor: MutableRefObject<TaskExecutorRef>) => {
   const { t } = useTranslation()
@@ -35,7 +30,7 @@ export const useProcess = (executor: MutableRefObject<TaskExecutorRef>) => {
       })
       await executor.current.execute({
         message: t('preprocess.checkExecutor'),
-        icon: <Icon color="purple.500" as={HiOutlineChip} />,
+        icon: ExecutorIcon,
         executor: () => {
           services.executor.selfCheck.actions.start()
           return true
