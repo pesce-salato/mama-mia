@@ -1,30 +1,53 @@
-import { AppIcon } from '@/resources/icons/app'
+import { useCallback, useRef } from 'react'
+import { Box, Button, Divider, Flex } from '@chakra-ui/react'
+import { Booth } from '@/views/preprocess/booth'
+import {
+  TaskExecutor,
+  type TaskExecutorRef,
+} from '@/views/preprocess/task-executor'
+import { useProcess } from '@/views/preprocess/process'
+import { useTranslation } from 'react-i18next'
+import { HiArrowSmRight } from 'react-icons/hi'
+import { useNavigate } from 'react-router-dom'
 import Style from './index.module.scss'
-import { Divider, Flex, Text, Wrap } from '@chakra-ui/react'
-import { useEffect, useRef } from 'react'
-import LottieWeb, { AnimationItem } from 'lottie-web'
-import AnimationData from './animation.json'
 
 export const Preprocess = () => {
-  const lottieContainer = useRef<HTMLDivElement | null>(null)
-  const lottieController = useRef<AnimationItem | null>(null)
+  const { t } = useTranslation()
+  const taskExecutor = useRef<TaskExecutorRef | undefined>(undefined)
+  const { isValid, isFinished } = useProcess(taskExecutor)
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    lottieController.current = LottieWeb.loadAnimation({
-      container: lottieContainer.current!,
-      renderer: 'svg',
-      loop: true,
-      autoplay: true,
-      animationData: AnimationData,
-    })
-  }, [])
+  const toHomePage = useCallback(() => {
+    navigate('/home')
+  }, [navigate])
 
   return (
     <div className={Style.container}>
-      <Flex alignItems={'center'} width="100%" height="100%">
-        <div ref={lottieContainer} className={Style.animation} />
-        <Divider orientation="vertical" />
-        <Wrap flex={1} height="100%"></Wrap>
+      <Flex alignItems="center" width="100%" height="100%">
+        <Booth />
+        <Box flex={1} height="100%" minHeight="0px" boxSizing="border-box">
+          <Flex direction="column" gap="24px" height="100%">
+            <Box flex={1} minHeight="0px">
+              <TaskExecutor ref={taskExecutor} />
+            </Box>
+            <Divider />
+            <Button
+              size="lg"
+              marginRight="24px"
+              marginBottom="24px"
+              alignSelf="flex-end"
+              isLoading={!isFinished}
+              isDisabled={!isValid}
+              variant="ghost"
+              colorScheme="purple"
+              loadingText={t('common.disposing')}
+              rightIcon={<HiArrowSmRight />}
+              onClick={toHomePage}
+            >
+              {t('preprocess.enter')}
+            </Button>
+          </Flex>
+        </Box>
       </Flex>
     </div>
   )

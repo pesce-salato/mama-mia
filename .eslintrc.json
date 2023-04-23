@@ -4,7 +4,7 @@
     "es6": true,
     "node": true
   },
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "react"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -22,7 +22,14 @@
         "singleQuote": true
       }
     ],
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "react/jsx-curly-brace-presence": [
+      "error",
+      {
+        "props": "never",
+        "children": "never"
+      }
+    ]
   },
   "parser": "@typescript-eslint/parser"
 }

@@ -3,6 +3,6 @@ import { Preprocess } from '@/views/preprocess'
 
 export const preprocess = (
   <>
-    <Route path={'preprocess'} element={<Preprocess />} />
+    <Route path="preprocess" element={<Preprocess />} />
   </>
 )

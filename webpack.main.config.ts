@@ -14,7 +14,7 @@ export const mainConfig: Configuration = {
     rules,
   },
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', 'scss', '.json'],
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.scss', '.json'],
     alias,
   },
 }

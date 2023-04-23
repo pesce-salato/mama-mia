@@ -4,6 +4,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { MemoryRouter } from 'react-router-dom'
 import { routes } from '@/routes'
 import { Scrollbar } from '@/components/scrollbar'
+import '@/i18n'
+import 'normalize.css'
 import './app.scss'
 
 const App = () => {
