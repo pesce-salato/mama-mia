@@ -3,13 +3,13 @@ import { TaskExecutorRef } from '@/views/preprocess/task-executor'
 import { getExposed } from '@/utils/get-exposed'
 import { useTranslation } from 'react-i18next'
 import { Icon } from '@chakra-ui/react'
-import { HiOutlineChip, HiOutlineHashtag } from 'react-icons/hi'
+import { HiOutlineChip, HiPaperClip } from 'react-icons/hi'
 import { waitUtilRegisterEventTriggered } from '@/utils/render-event/wait-util-register-event-triggered'
 import { throttle } from 'lodash'
 
 const services = getExposed().services
 
-const AppIconBox = <Icon color="purple.500" as={HiOutlineHashtag} />
+const AppIconBox = <Icon color="purple.500" as={HiPaperClip} />
 
 const ExecutorIcon = <Icon color="cyan.500" as={HiOutlineChip} />
 
