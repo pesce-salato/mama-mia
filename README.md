@@ -1,3 +1,3 @@
-# <img title="" src="./docs/app.svg" alt="" width="48" height="48"> mama mia
+# <img title="" src="./docs/app.svg" alt="" width="32" height="32"> mama mia
 
-<table><tr><td valign="center"><img title="" src="./docs/app.svg" alt="" width="48" height="48"> mama mia </td></tr></table>
+Simplify the crawler, build workflows with visual actions
