@@ -20,7 +20,7 @@ export const Booth = () => {
   }, [])
 
   return (
-    <Box className={Cls('can-be-drag', Style.root)} background="gray.100">
+    <Box className={Cls('can-be-drag', Style.root)} background="gray.50">
       <div ref={lottieContainer} className={Style.animation} />
     </Box>
   )

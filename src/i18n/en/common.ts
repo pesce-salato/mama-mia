@@ -3,4 +3,5 @@ export const common = {
   failed: 'failed',
   downloading: 'downloading',
   disposing: 'disposing',
+  slogan: 'mama mia',
 }

@@ -18,7 +18,9 @@ export const Preprocess = () => {
   const navigate = useNavigate()
 
   const toHomePage = useCallback(() => {
-    navigate('/home')
+    navigate('/home', {
+      replace: true,
+    })
   }, [navigate])
 
   return (

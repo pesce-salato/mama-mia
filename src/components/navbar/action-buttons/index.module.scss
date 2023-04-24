@@ -1,0 +1,10 @@
+@import "@/ui/define.scss";
+
+.icon {
+  pointer-events: none;
+  font-size: 24px;
+}
+
+.logo {
+  filter: drop-shadow(1px 1px 2px var(--chakra-colors-gray-500));
+}
