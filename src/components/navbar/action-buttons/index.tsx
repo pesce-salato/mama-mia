@@ -1,59 +1,73 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useCallback } from 'react'
-import { IconButton } from '@chakra-ui/react'
+import { useCallback, useMemo } from 'react'
+import { Flex, IconButton } from '@chakra-ui/react'
+import { TbSettingsFilled } from 'react-icons/tb'
 import { HiChevronLeft, HiChevronRight, HiPaperClip } from 'react-icons/hi'
-import Cls from 'classnames'
 import Style from './index.module.scss'
+import { type IconType } from 'react-icons'
+
+interface ActionDetail {
+  icon: IconType
+  onClick: () => void
+  active?: boolean
+}
 
 export const ActionButtons = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const toHome = useCallback(() => {
-    if (location.pathname !== '/home') {
-      navigate('/home')
-    }
-  }, [navigate, location])
+  const toMatchPage = useCallback(
+    (pathname: string) => {
+      if (location.pathname !== pathname) {
+        navigate(pathname)
+      }
+    },
+    [navigate, location]
+  )
 
-  const back = useCallback(() => {
-    navigate(-1)
-  }, [navigate])
+  const isInMatchPage = useCallback(
+    (pathname: string) => pathname === location.pathname,
+    [location]
+  )
 
-  const forward = useCallback(() => {
-    navigate(1)
-  }, [navigate])
+  const actions = useMemo<ActionDetail[]>(() => {
+    return [
+      {
+        icon: HiChevronLeft,
+        onClick: () => navigate(-1),
+      },
+      {
+        icon: HiChevronRight,
+        onClick: () => navigate(1),
+      },
+      {
+        icon: TbSettingsFilled,
+        onClick: () => toMatchPage('/setting'),
+        active: isInMatchPage('/setting'),
+      },
+      {
+        icon: HiPaperClip,
+        onClick: () => toMatchPage('/home'),
+        active: isInMatchPage('/home'),
+      },
+    ]
+  }, [navigate, toMatchPage, isInMatchPage])
 
   return (
-    <>
-      <IconButton
-        onClick={back}
-        variant="ghost"
-        aria-label="back"
-        className="no-drag"
-        size="sm"
-        fontSize="24px"
-        icon={<HiChevronLeft className={Style.icon} />}
-      />
-      <IconButton
-        onClick={forward}
-        marginLeft="12px"
-        variant="ghost"
-        aria-label="forward"
-        className="no-drag"
-        size="sm"
-        fontSize="24px"
-        icon={<HiChevronRight className={Style.icon} cursor="pointer" />}
-      />
-      <IconButton
-        marginLeft="24px"
-        onClick={toHome}
-        variant="ghost"
-        size="sm"
-        className="no-drag"
-        colorScheme="purple"
-        aria-label="home"
-        icon={<HiPaperClip className={Cls(Style.logo, Style.icon)} />}
-      />
-    </>
+    <Flex alignItems="center" gap="12px">
+      {actions.map(({ icon: Icon, onClick, active }, index) => (
+        <IconButton
+          key={index}
+          onClick={onClick}
+          variant="ghost"
+          aria-label="back"
+          className="no-drag"
+          size="sm"
+          colorScheme={active ? 'purple' : 'gray'}
+          fontSize="24px"
+          icon={<Icon className={Style.icon} />}
+        />
+      ))}
+    </Flex>
   )
 }
