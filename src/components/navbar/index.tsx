@@ -30,7 +30,7 @@ export const Navbar = () => {
       width="100%"
       height="48px"
       alignItems="center"
-      paddingX="24px"
+      paddingX="12px"
       boxSizing="border-box"
     >
       <Box flex="1"></Box>

@@ -28,15 +28,15 @@ export const Preprocess = () => {
       <Flex alignItems="center" width="100%" height="100%">
         <Booth />
         <Box flex={1} height="100%" minHeight="0px" boxSizing="border-box">
-          <Flex direction="column" gap="24px" height="100%">
+          <Flex direction="column" gap="12px" height="100%">
             <Box flex={1} minHeight="0px">
               <TaskExecutor ref={taskExecutor} />
             </Box>
             <Divider />
             <Button
               size="lg"
-              marginRight="24px"
-              marginBottom="24px"
+              marginRight="12px"
+              marginBottom="12px"
               alignSelf="flex-end"
               isLoading={!isFinished}
               isDisabled={!isValid}

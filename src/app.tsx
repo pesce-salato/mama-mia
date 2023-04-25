@@ -4,16 +4,16 @@ import { Box, ChakraProvider, Flex } from '@chakra-ui/react'
 import { MemoryRouter } from 'react-router-dom'
 import { routes } from '@/routes'
 import { Scrollbar } from '@/components/scrollbar'
-import { Sidebar } from '@/components/sidebar'
+import { theme } from '@/theme'
+import { Navbar } from '@/components/navbar'
 import '@/i18n'
 import 'normalize.css'
 import './app.scss'
-import { Navbar } from '@/components/navbar'
 
 const App = () => {
   return (
     <RecoilRoot>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <MemoryRouter initialEntries={['/preprocess']}>
           <Flex
             width="100%"
@@ -23,12 +23,9 @@ const App = () => {
             flexDirection="column"
           >
             <Navbar />
-            <Flex width="100%" flex={1} minWidth="0px" minHeight="0px">
-              <Sidebar />
-              <Box flex={1} height="100%" minWidth="0px">
-                <Scrollbar onlyScrollVisible>{routes}</Scrollbar>
-              </Box>
-            </Flex>
+            <Box width="100%" flex={1} minWidth="0px" minHeight="0px">
+              <Scrollbar onlyScrollVisible>{routes}</Scrollbar>
+            </Box>
           </Flex>
         </MemoryRouter>
       </ChakraProvider>
