@@ -3,5 +3,7 @@ export const menu = {
   workflows: 'workflows',
   tasks: 'tasks',
   setting: 'setting',
+  actions: 'actions',
+  docs: 'docs',
   about: 'about us',
 }

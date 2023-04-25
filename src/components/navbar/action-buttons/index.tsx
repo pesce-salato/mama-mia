@@ -7,6 +7,7 @@ import {
   type PlacementWithLogical,
 } from '@chakra-ui/react'
 import {
+  HiBookOpen,
   HiChevronLeft,
   HiChevronRight,
   HiCog,
@@ -70,7 +71,9 @@ export const ActionButtons = () => {
       generatePageAction('/home', HiPaperClip, t('menu.home')),
       generatePageAction('/workflows', HiTemplate, t('menu.workflows')),
       generatePageAction('/tasks', HiTerminal, t('menu.tasks')),
+      generatePageAction('/actions', HiPuzzle, t('menu.actions')),
       generatePageAction('/setting', HiCog, t('menu.setting')),
+      generatePageAction('/docs', HiBookOpen, t('menu.docs')),
       generatePageAction('/about', HiIdentification, t('menu.about')),
     ]
   }, [navigate, toMatchPage, isInMatchPage, t])
