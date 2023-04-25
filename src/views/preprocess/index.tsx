@@ -41,7 +41,6 @@ export const Preprocess = () => {
               isLoading={!isFinished}
               isDisabled={!isValid}
               variant="ghost"
-              colorScheme="purple"
               loadingText={t('common.disposing')}
               rightIcon={<HiArrowSmRight />}
               onClick={toHomePage}
