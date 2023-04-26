@@ -1,5 +1,4 @@
-import { Language } from '@/i18n/lng'
-import { Card, Heading } from '@chakra-ui/react'
+import { Language, useSetLng } from '@/i18n/lng'
 import { useTranslation } from 'react-i18next'
 import { SimpleSelect, SimpleSelectOption } from '@/components/simple-select'
 import { HTMLChakraProps } from '@chakra-ui/system'
@@ -18,13 +17,14 @@ const SupportLanguageList: SimpleSelectOption[] = [
 
 export const LanguageSetting = (props: HTMLChakraProps<'div'>) => {
   const { t, i18n } = useTranslation()
+  const setLanguage = useSetLng()
 
   return (
     <SettingCard title={t('common.language')} {...props}>
       <SimpleSelect
         data={SupportLanguageList}
         value={i18n.language}
-        onChange={i18n.changeLanguage}
+        onChange={setLanguage}
       />
     </SettingCard>
   )
