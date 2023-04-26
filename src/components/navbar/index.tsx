@@ -7,18 +7,11 @@ import Style from './index.module.scss'
 
 export const Navbar = () => {
   const location = useLocation()
-  const navigate = useNavigate()
 
   const isVisible = useMemo(
     () => !['/preprocess'].includes(location.pathname),
     [location.pathname]
   )
-
-  const toHome = useCallback(() => {
-    if (location.pathname !== '/home') {
-      navigate('/home')
-    }
-  }, [navigate])
 
   if (!isVisible) {
     return null
@@ -29,6 +22,7 @@ export const Navbar = () => {
       className={Cls('can-be-drag', Style.root)}
       width="100%"
       height="48px"
+      background="white"
       alignItems="center"
       paddingX="12px"
       boxSizing="border-box"

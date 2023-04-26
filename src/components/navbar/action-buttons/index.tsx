@@ -1,13 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useCallback, useMemo } from 'react'
+import { Flex, IconButton, Tooltip } from '@chakra-ui/react'
 import {
-  Flex,
-  IconButton,
-  Tooltip,
-  type PlacementWithLogical,
-} from '@chakra-ui/react'
-import {
-  HiBookOpen,
   HiChevronLeft,
   HiChevronRight,
   HiCog,
@@ -43,7 +37,7 @@ export const ActionButtons = () => {
   )
 
   const isInMatchPage = useCallback(
-    (pathname: string) => pathname === location.pathname,
+    (pathname: string) => location.pathname.startsWith(pathname),
     [location]
   )
 
@@ -73,7 +67,6 @@ export const ActionButtons = () => {
       generatePageAction('/tasks', HiTerminal, t('menu.tasks')),
       generatePageAction('/actions', HiPuzzle, t('menu.actions')),
       generatePageAction('/setting', HiCog, t('menu.setting')),
-      generatePageAction('/docs', HiBookOpen, t('menu.docs')),
       generatePageAction('/about', HiIdentification, t('menu.about')),
     ]
   }, [navigate, toMatchPage, isInMatchPage, t])

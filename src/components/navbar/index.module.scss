@@ -2,4 +2,9 @@
 
 .root {
   box-shadow: 0 0 6px var(--chakra-colors-purple-100);
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
 }
