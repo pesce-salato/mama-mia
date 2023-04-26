@@ -10,7 +10,7 @@ import {
   useDisclosure,
   useToken,
 } from '@chakra-ui/react'
-import { Fragment, useCallback, useMemo } from 'react'
+import { Fragment, useCallback, useMemo, useState } from 'react'
 import { SelectContext, SelectProps } from './type'
 import { useChildren } from './children'
 import { SelectValue } from './value'
@@ -27,6 +27,8 @@ export const Select = (props: SelectProps) => {
     value,
     isPortal,
     onChange,
+    onMouseDown: onTriggerMouseDown,
+    onMouseUp: onTriggerMouseUp,
     ...otherProps
   } = props
 
@@ -73,15 +75,37 @@ export const Select = (props: SelectProps) => {
     [activeColor]
   )
 
+  const [isPressed, setIsPressed] = useState(false)
+
+  const onMouseDown = useCallback(
+    (e: any) => {
+      onTriggerMouseDown?.(e)
+      setIsPressed(true)
+    },
+    [onTriggerMouseDown]
+  )
+
+  const onMouseUp = useCallback(
+    (e: any) => {
+      onTriggerMouseUp?.(e)
+      setIsPressed(false)
+    },
+    [onTriggerMouseUp]
+  )
+
   return (
     <SelectContext.Provider value={context}>
       <Popover
-        matchWidth
         isOpen={isOpen}
         onOpen={onOpen}
-        onClose={onClose}
+        onClose={() => {
+          if (!isPressed) {
+            onClose()
+          }
+        }}
+        returnFocusOnClose={false}
+        matchWidth
         placement="bottom"
-        closeOnBlur={false}
       >
         <PopoverTrigger>
           <Flex
@@ -94,10 +118,11 @@ export const Select = (props: SelectProps) => {
             height={10}
             paddingX={4}
             gap={4}
-            background="white"
             _expanded={activeStyle}
             _focus={activeStyle}
             {...otherProps}
+            onMouseDown={onMouseDown}
+            onMouseUp={onMouseUp}
           >
             <Box flex={1}>
               {value.length ? (
@@ -106,12 +131,16 @@ export const Select = (props: SelectProps) => {
                 <Text color="gray.500">{placeholder}</Text>
               )}
             </Box>
-            <Icon fontSize="24px" as={isOpen ? HiChevronUp : HiChevronDown} />
+            <Icon
+              pointerEvents="none"
+              fontSize="24px"
+              as={isOpen ? HiChevronUp : HiChevronDown}
+            />
           </Flex>
         </PopoverTrigger>
         <ContentWrapper>
           <PopoverContent
-            boxShadow="var(--chakra-shadows-md), 0 0 4px rgba(0, 0, 0, 0.05)"
+            boxShadow="var(--chakra-shadows-md), 0 0 4px rgba(0,0,0,0.1)"
             borderRadius="lg"
             borderWidth={0}
             width="100%"

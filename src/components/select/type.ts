@@ -29,5 +29,7 @@ export interface SelectContext {
 
 export const SelectContext = createContext<SelectContext>({
   value: [],
-  onOptionClick: (_value) => {},
+  onOptionClick: (_value) => {
+    // default
+  },
 })

@@ -4,4 +4,5 @@ export const common = {
   downloading: 'downloading',
   disposing: 'disposing',
   slogan: 'mama mia',
+  language: 'language',
 }
