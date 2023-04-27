@@ -26,7 +26,6 @@ export const downloadBrowser = async (
       await events?.endDownload?.(true)
       return true
     } catch (e) {
-      console.error(e)
       await events?.endDownload?.(false, e.toString())
       return false
     }

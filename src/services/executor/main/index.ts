@@ -2,25 +2,30 @@ import Path from 'path'
 import { io } from '@/services/io'
 import { registerSelfCheckEvent } from './events/self-check'
 
+// export const test = async () => {
+//   const fetcher = new BrowserFetcher({
+//     path: ExecutorService.browserPath,
+//     product: 'chrome',
+//   })
 //
-// const browser = await Puppeteer.launch({
-//   executablePath: fetcher.revisionInfo(revision).executablePath,
-//   // headless: false,
-//   defaultViewport: {
-//     width: 0,
-//     height: 0,
-//   },
-// })
+//   const browser = await Puppeteer.launch({
+//     executablePath: fetcher.revisionInfo(ExecutorService.revision)
+//       .executablePath,
+//     headless: false,
+//     defaultViewport: {
+//       width: 0,
+//       height: 0,
+//     },
+//   })
 //
-// const page = await browser.newPage()
+//   const page = await browser.newPage()
 //
-// await page.goto('https://www.baidu.com/')
+//   await usePageDomSelector(page, (e) => {
+//     console.error('selected', e)
+//   })
 //
-// await page.screenshot({
-//   path: Path.join(app.getPath('desktop'), 'test.png'),
-//   fullPage: true,
-//   omitBackground: true,
-// })
+//   await page.goto('https://www.baidu.com/')
+// }
 
 export class ExecutorService {
   public static readonly revision = '1108766'
