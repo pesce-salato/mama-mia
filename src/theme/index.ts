@@ -9,5 +9,10 @@ export const theme = extendTheme({
         colorScheme: 'purple',
       },
     },
+    Input: {
+      defaultProps: {
+        focusBorderColor: 'purple.500',
+      },
+    },
   },
 })

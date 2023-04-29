@@ -6,3 +6,13 @@ export interface ExecutorServiceDomElement {
   index: number
   parent?: ExecutorServiceDomElement
 }
+
+export interface ExecutorServiceSelectorVerifyPageResult {
+  page: string
+  hitPoints: ExecutorServiceSelectorVerifyHitPoint[]
+}
+
+export interface ExecutorServiceSelectorVerifyHitPoint {
+  screenshotPath: string
+  tagName: string
+}

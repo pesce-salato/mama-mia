@@ -1,31 +1,22 @@
-import { Box } from '@chakra-ui/react'
-import { Select } from '@/components/select'
-import { SelectValue } from '@/components/select/value'
-import { SelectMenu } from '@/components/select/menu'
-import { SelectOption } from '@/components/select/option'
-import { useState } from 'react'
+import { Box, Button } from '@chakra-ui/react'
+import { useRef, useState } from 'react'
+import {
+  QuerySelectorHelperModal,
+  QuerySelectorHelperModalRef,
+} from '@/components/query-selector-helper-modal'
 
 export const Home = () => {
   const [value, setValue] = useState([])
+  const querySelectorHelperModal = useRef<QuerySelectorHelperModalRef | null>(
+    null
+  )
 
   return (
     <Box width="100%">
-      home{Date.now()}1
-      <Box width="240px" marginLeft="120px">
-        <Select
-          value={value}
-          onChange={setValue}
-          placeholder="xxxx xxxx xxxx xx"
-        >
-          <SelectValue>{value.toString()}</SelectValue>
-          <SelectMenu>
-            <SelectOption isDisabled value="111">
-              111
-            </SelectOption>
-            <SelectOption value="222">222</SelectOption>
-          </SelectMenu>
-        </Select>
-      </Box>
+      <Button onClick={() => querySelectorHelperModal.current.open()}>
+        Open
+      </Button>
+      <QuerySelectorHelperModal ref={querySelectorHelperModal} />
     </Box>
   )
 }

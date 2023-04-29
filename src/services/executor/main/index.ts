@@ -1,6 +1,7 @@
 import Path from 'path'
 import { io } from '@/services/io'
 import { registerSelfCheckEvent } from './events/self-check'
+import { registerPageDomSelectorEvent } from '@/services/executor/main/events/page-dom-selector'
 
 // export const test = async () => {
 //   const fetcher = new BrowserFetcher({
@@ -36,6 +37,10 @@ export class ExecutorService {
 
   constructor() {
     registerSelfCheckEvent(
+      ExecutorService.browserPath,
+      ExecutorService.revision
+    )
+    registerPageDomSelectorEvent(
       ExecutorService.browserPath,
       ExecutorService.revision
     )
