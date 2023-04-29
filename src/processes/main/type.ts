@@ -1,6 +1,6 @@
 import { BrowserWindow } from 'electron'
 
-export interface MainContext {
+export interface MainProcessContext {
   mainWindow?: BrowserWindow | undefined
   allowQuitting: boolean
   webpackEntry: {

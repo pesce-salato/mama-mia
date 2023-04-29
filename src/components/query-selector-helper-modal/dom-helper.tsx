@@ -17,6 +17,7 @@ export const useDomHelper = () => {
   useEffect(
     () =>
       services.executor.pageDomSelector.events.choose((e, data) => {
+        services.window.main.actions.focus()
         setChooseElement(data)
       }),
     []

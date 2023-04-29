@@ -13,6 +13,7 @@ export const useVerify = (value: string) => {
   const verifySelector = useCallback(async () => {
     setIsInVerifying(true)
     const result = await services.executor.pageDomSelector.actions.verify(value)
+    services.window.main.actions.focus()
     console.error(result)
     setIsInVerifying(false)
   }, [value])

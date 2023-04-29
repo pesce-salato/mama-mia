@@ -1,7 +1,7 @@
-import { MainContext } from './type'
+import { MainProcessContext } from './type'
 import { app, BrowserWindow } from 'electron'
 
-export const getMainWindowHelpers = (context: MainContext) => {
+export const getMainWindowHelpers = (context: MainProcessContext) => {
   const hideWindow = () => {
     if (context.mainWindow && !context.mainWindow.isDestroyed()) {
       context.mainWindow.hide()
