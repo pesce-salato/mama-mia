@@ -5,5 +5,6 @@ export const menu = {
   setting: 'setting',
   actions: 'actions',
   docs: 'docs',
+  credentials: 'credentials',
   about: 'about us',
 }

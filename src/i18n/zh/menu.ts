@@ -6,4 +6,5 @@ export const menu = {
   actions: '行为',
   docs: '文档',
   about: '关于我们',
+  credentials: '凭证',
 }

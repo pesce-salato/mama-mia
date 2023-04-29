@@ -14,6 +14,9 @@ import {
 import { type IconType } from 'react-icons'
 import Style from './index.module.scss'
 import { useTranslation } from 'react-i18next'
+import { BsGithub } from 'react-icons/bs'
+import { GrGithub } from 'react-icons/gr'
+import { IoLogoGithub } from 'react-icons/io'
 
 interface ActionDetail {
   icon: IconType
@@ -66,8 +69,13 @@ export const ActionButtons = () => {
       generatePageAction('/workflows', HiTemplate, t('menu.workflows')),
       generatePageAction('/tasks', HiTerminal, t('menu.tasks')),
       generatePageAction('/actions', HiPuzzle, t('menu.actions')),
+      generatePageAction(
+        '/credentials',
+        HiIdentification,
+        t('menu.credentials')
+      ),
       generatePageAction('/setting', HiCog, t('menu.setting')),
-      generatePageAction('/about', HiIdentification, t('menu.about')),
+      generatePageAction('/about', IoLogoGithub, t('menu.about')),
     ]
   }, [navigate, toMatchPage, isInMatchPage, t])
 
