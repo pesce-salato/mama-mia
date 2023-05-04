@@ -1,6 +1,11 @@
 import Puppeteer, { BrowserFetcher } from 'puppeteer-core'
 
-export const openBrowser = async (browserPath: string, revision: string) => {
+export const openBrowser = async (
+  browserPath: string,
+  revision: string,
+  incognito = true,
+  headless = false
+) => {
   const fetcher = new BrowserFetcher({
     path: browserPath,
     product: 'chrome',
@@ -8,13 +13,11 @@ export const openBrowser = async (browserPath: string, revision: string) => {
 
   const browser = await Puppeteer.launch({
     executablePath: fetcher.revisionInfo(revision).executablePath,
-    headless: false,
+    headless,
     defaultViewport: null,
-    // defaultViewport: {
-    //   width: 0,
-    //   height: 0,
-    // },
+    args: [incognito && '--incognito'].filter((item) => item),
   })
+  const context = await browser.createIncognitoBrowserContext()
 
   const openPage = async (url?: string) => {
     const initialPage = (await browser.pages())[0]
@@ -24,7 +27,7 @@ export const openBrowser = async (browserPath: string, revision: string) => {
       return initialPage
     }
 
-    const newPage = await browser.newPage()
+    const newPage = await (incognito ? context : browser).newPage()
     await newPage.goto(url)
 
     return newPage
