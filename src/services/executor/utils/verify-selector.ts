@@ -15,12 +15,17 @@ export const verifySelector = async (browser: Browser, selector: string) => {
   const getHitPoint = async (
     node: ElementHandle<Element>
   ): Promise<ExecutorServiceSelectorVerifyHitPoint> => {
-    const screenshotPath = Path.join(config.path.cache, nanoid() + '.png')
-    await node.screenshot({
-      path: screenshotPath,
-      omitBackground: true,
-    })
+    let screenshotPath = undefined
+
+    if (await node.isVisible()) {
+      screenshotPath = Path.join(config.path.cache, nanoid() + '.png')
+      await node.screenshot({
+        path: screenshotPath,
+        omitBackground: true,
+      })
+    }
     const tagName = await getElementTagName(node)
+
     return {
       tagName,
       screenshotPath,
@@ -32,20 +37,21 @@ export const verifySelector = async (browser: Browser, selector: string) => {
   for (const page of pages) {
     await page.bringToFront()
     await hideMaskExecutor(page, async () => {
-      let nodes: ElementHandle[]
-
       try {
-        nodes = await page.$$(selector)
-      } catch {
-        nodes = []
-      }
+        await page.waitForSelector('body', {
+          visible: true,
+        })
+        const nodes = await page.$$(selector)
 
-      if (nodes.length) {
-        const hitPoints: ExecutorServiceSelectorVerifyHitPoint[] = []
-        for (const node of nodes) {
-          hitPoints.push(await getHitPoint(node))
+        if (nodes.length) {
+          const hitPoints: ExecutorServiceSelectorVerifyHitPoint[] = []
+          for (const node of nodes) {
+            hitPoints.push(await getHitPoint(node))
+          }
+          result.push({ page: page.url(), hitPoints })
         }
-        result.push({ page: page.url(), hitPoints })
+      } catch (e) {
+        console.error(e)
       }
     })
   }
