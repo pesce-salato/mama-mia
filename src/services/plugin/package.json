@@ -1,0 +1,15 @@
+{
+  "name": "@pesce-salato/mama-mia-plugin-define",
+  "version": "0.0.1",
+  "description": "The define of mama-mia plugin",
+  "keywords": [],
+  "main": "./type/index.ts",
+  "files": [
+    "type"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer-core": "^19.9.1",
+    "typescript": "^5.0.4"
+  }
+}
