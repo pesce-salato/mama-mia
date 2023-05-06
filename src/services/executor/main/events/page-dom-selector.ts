@@ -27,7 +27,6 @@ export const registerPageDomSelectorEvent = (
     )
 
     browser.on('disconnected', () => {
-      console.error('closed')
       try {
         sender.send(ExecutorServiceChannel.pageDomSelector.closed)
       } catch (e) {
