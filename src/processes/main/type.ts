@@ -1,4 +1,5 @@
 import { BrowserWindow } from 'electron'
+import { type Services } from '@/services/main'
 
 export interface MainProcessContext {
   mainWindow?: BrowserWindow | undefined
@@ -7,4 +8,5 @@ export interface MainProcessContext {
     mainWindowPreload: string
     mainWindow: string
   }
+  services?: Services
 }

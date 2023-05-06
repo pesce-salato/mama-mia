@@ -59,3 +59,4 @@ app.on('before-quit', () => (context.allowQuitting = true))
 // code. You can also put them in separate files and import them here.
 
 const services = generateServices(context)
+context.services = services
