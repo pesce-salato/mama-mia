@@ -1,4 +1,4 @@
-import { type Page } from 'puppeteer-core'
+import { type Browser, type Page } from 'puppeteer-core'
 
 export interface CredentialPluginGetValue {
   /**
@@ -21,7 +21,7 @@ export interface CredentialPlugin {
    * @param page current page
    * @return the return value should be the credential detail
    */
-  get: (page: Page) => Promise<CredentialPluginGetValue>
+  get: (browser: Browser) => Promise<CredentialPluginGetValue>
   /**
    * use plugin to apply credential data to current page
    * @param page current page

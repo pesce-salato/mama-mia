@@ -10,4 +10,13 @@ export interface PluginConfig {
   description: string
 }
 
+export interface PluginDetail {
+  id: string
+  localDevPath?: string
+}
+
+export interface PluginDetailWithConfig extends PluginDetail {
+  config: PluginConfig
+}
+
 export * from './credential'
