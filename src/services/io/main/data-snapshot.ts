@@ -1,10 +1,18 @@
 import { io } from '@/services/io'
 import Fs from 'fs/promises'
+import { mkdirSync, existsSync } from 'fs'
 import Path from 'path'
 import { nanoid } from 'nanoid'
 
 export class DataSnapshot {
   private dir = io.config.path.dataSnapshot
+
+  constructor() {
+    // todo: ioService 统一初始化
+    if (!existsSync(this.dir)) {
+      mkdirSync(this.dir)
+    }
+  }
 
   public create = async <T = any>(data: T): Promise<string | undefined> => {
     try {
@@ -14,7 +22,8 @@ export class DataSnapshot {
         JSON.stringify(data, null, 2)
       )
       return id
-    } catch {
+    } catch (e) {
+      console.error(e)
       return undefined
     }
   }
