@@ -1,9 +1,8 @@
 import { channelNsBuilder } from '@/utils/channel-ns-builder'
+import { generateBaseChannel } from '@/services/credential/type/channel/base'
 
 const channel = channelNsBuilder('credentialService')
 
 export const CredentialServiceChannel = Object.freeze({
-  create: channel('create'),
-  list: channel('list'),
-  useDefaultToGet: channel('useDefaultToGet'),
+  base: generateBaseChannel(channel),
 })

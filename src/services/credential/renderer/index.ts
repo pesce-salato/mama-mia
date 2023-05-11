@@ -1,5 +1,7 @@
-import { generateActions } from '@/services/credential/renderer/action'
+import { generateBaseActions } from './actions/base'
 
 export class CredentialService {
-  public actions = generateActions()
+  public base = {
+    actions: generateBaseActions(),
+  }
 }
