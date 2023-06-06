@@ -18,41 +18,37 @@ Auto generated **id**
 
 Title of the credential
 
-### icon
+### createdAt
 
-**Optional**, icon of the website, it can be:
+Credential create time (YYYY-MM-DD)
 
-- url
-- local file
+### updateAt
 
-### data
+**Optional**, Credential update time (YYYY-MM-DD)
 
-The data of the credential.
+### dataId
 
-### plugin
+The data id of the credential.
 
-**Optional**, the plugin of this credential.
+### pluginId
 
-Default: `cookie` as `data`, user manual stop the action
+the plugin of this credential.
 
 ## plugin
 
 Credential can have match domain plugin, it used to help create credential.
 
-plugin execution context:
-
-- start
-  - `(page: Page) => void`
-
-- finish (finish the task of get credential)
-  - `(detail: Omit<CredentialDetail,'id'>) => void`
 
 plugin exposed:
 
-- use
-  - `(page: Page, data: any) => void`
+- get
+  - `async (browser: Browser) => Promise<CredentialPluginGetValue>`
+
+- apply
+  - `async (page: Page, data: any) => Promise<boolean>`
+
 - clear
-  - `(page: Page) => void`
+  - `(page: Page) => Promise<boolean>`
 
 
 

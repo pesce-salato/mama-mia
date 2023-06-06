@@ -5,4 +5,6 @@ export const common = {
   disposing: '正在处理',
   slogan: 'mama mia',
   language: '语言',
+  import: '导入',
+  link: '链接',
 }

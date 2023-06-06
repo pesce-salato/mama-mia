@@ -5,4 +5,6 @@ export const common = {
   disposing: 'disposing',
   slogan: 'mama mia',
   language: 'language',
+  import: 'import',
+  link: 'link',
 }
