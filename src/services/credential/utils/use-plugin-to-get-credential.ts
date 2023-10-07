@@ -2,15 +2,18 @@ import { CredentialPlugin } from '@/services/plugin'
 import { MainProcessContext } from '@/processes/main/type'
 import { CredentialGetValue } from '@/services/credential/type/detail'
 
-export const getCredentialData = async (
+export const usePluginToGetCredential = async (
   pluginId: string,
   context: MainProcessContext
 ): Promise<CredentialGetValue | undefined> => {
   const { browser } = await context.services.executor.openBrowser()
 
-  const { get } = await context.services.plugin.use<CredentialPlugin>(
-    '/Users/huihuangxu/Desktop/code/public/github/myself/mama-mia-plugin-default-credential/output/src'
-  )
+  const { get } = (
+    await context.services.plugin.use<CredentialPlugin>(
+      // '/Users/huihuangxu/Desktop/code/public/github/myself/mama-mia-plugin-default-credential/output/src'
+      pluginId
+    )
+  ).data!
 
   const getDetail = async (): Promise<CredentialGetValue> => {
     const { data, ...others } = await get(browser)

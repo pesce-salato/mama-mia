@@ -10,6 +10,6 @@ export const config = Object.freeze({
     db: Path.join(appData, 'db'),
     dataSnapshot: Path.join(appData, 'data-snapshot'),
     plugins: Path.join(appData, 'plugins'),
-    cache: Path.join(app.getPath('temp')),
+    cache: Path.join(app.getPath('temp'), 'mama-mia'),
   },
 })

@@ -4,6 +4,7 @@ import {
   CredentialDetail,
   CredentialGetValue,
 } from '@/services/credential/type/detail'
+import { ActionResult } from '@/@types/action'
 
 export const generateBaseActions = () => {
   return {
@@ -11,7 +12,14 @@ export const generateBaseActions = () => {
       credential: Omit<CredentialDetail, 'id'>
     ): Promise<string | undefined> =>
       ipcRenderer.invoke(CredentialServiceChannel.base.create, credential),
-    getData: (pluginId: string): Promise<CredentialGetValue | undefined> =>
-      ipcRenderer.invoke(CredentialServiceChannel.base.getData, pluginId),
+    usePluginToGetCredential: (
+      pluginId: string
+    ): Promise<CredentialGetValue | undefined> =>
+      ipcRenderer.invoke(
+        CredentialServiceChannel.base.usePluginToGetCredential,
+        pluginId
+      ),
+    init: (): Promise<ActionResult<boolean>> =>
+      ipcRenderer.invoke(CredentialServiceChannel.base.init),
   }
 }

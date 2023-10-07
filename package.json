@@ -28,6 +28,7 @@
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",
     "@types/three": "^0.150.2",
+    "@types/yauzl-promise": "^2.1.1",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
     "@vercel/webpack-asset-relocator-loader": "^1.7.3",
@@ -55,7 +56,9 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "classnames": "^2.3.2",
+    "dayjs": "^1.11.8",
     "electron-squirrel-startup": "^1.0.0",
+    "extract-zip": "^2.0.1",
     "framer-motion": "^10.12.2",
     "i18next": "^22.4.15",
     "lodash": "^4.17.21",
@@ -71,6 +74,7 @@
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
     "recoil": "^0.7.7",
-    "three": "^0.151.3"
+    "three": "^0.151.3",
+    "yauzl-promise": "^4.0.0"
   }
 }

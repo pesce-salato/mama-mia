@@ -6,9 +6,10 @@ export const generateBaseChannel = (
   const ns = channelNsBuilder(channel('base'))
 
   return {
-    create: ns('create'),
-    list: ns('list'),
-    usePluginToGetCredential: ns('usePluginToGetCredential'),
+    import: ns('import'),
+    link: ns('link'),
+    check: ns('check'),
     init: ns('init'),
+    search: ns('search'),
   }
 }

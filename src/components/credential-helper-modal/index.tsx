@@ -1,4 +1,10 @@
-import { forwardRef, useCallback, useImperativeHandle, useState } from 'react'
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react'
 import {
   Button,
   FormControl,
@@ -49,6 +55,15 @@ export const CredentialHelperModal = forwardRef<CredentialHelperModalRef>(
       open,
     }))
 
+    useEffect(() => {
+      const test = async () => {
+        const result = await services.plugin.base.actions.search()
+        console.error(result)
+      }
+
+      test()
+    }, [])
+
     return (
       <Modal isOpen={isVisible} onClose={onCloseModal} size="xl">
         <ModalOverlay />
@@ -68,7 +83,9 @@ export const CredentialHelperModal = forwardRef<CredentialHelperModalRef>(
             <Button
               onClick={async () => {
                 console.error(
-                  await services.credential.base.actions.getData('')
+                  await services.credential.base.actions.usePluginToGetCredential(
+                    ''
+                  )
                 )
               }}
             >

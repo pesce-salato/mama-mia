@@ -14,5 +14,10 @@ export const theme = extendTheme({
         focusBorderColor: 'purple.500',
       },
     },
+    Spinner: {
+      defaultProps: {
+        colorScheme: 'purple',
+      },
+    },
   },
 })

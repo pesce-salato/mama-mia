@@ -66,6 +66,7 @@ export const TaskExecutor = forwardRef<TaskExecutorRef>((props, ref) => {
         if (typeof executeResult !== 'boolean') {
           setTaskContext({ loading: true }, id)
           executeResult = await executeResult
+          setTaskContext({ loading: false }, id)
         }
 
         setTaskContext({ result: executeResult as boolean, finished: true }, id)

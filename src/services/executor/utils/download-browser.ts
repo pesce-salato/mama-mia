@@ -14,13 +14,35 @@ export const downloadBrowser = async (
     endDownload?: (succeed: boolean, message?: string) => void | Promise<void>
   }
 ) => {
-  const fetcher = new BrowserFetcher({
+  const hosts = [undefined, 'https://npm.taobao.org/mirrors']
+
+  let fetcher = new BrowserFetcher({
     path: path,
     product: 'chrome',
   })
 
   if (!fetcher.localRevisions().includes(revision)) {
     await events?.startDownload?.()
+
+    for (const host of hosts) {
+      fetcher = new BrowserFetcher({
+        path: path,
+        product: 'chrome',
+        host,
+      })
+
+      if (await fetcher.canDownload(revision)) {
+        break
+      } else {
+        fetcher = undefined
+      }
+    }
+
+    if (!fetcher) {
+      await events?.endDownload?.(false, 'network error')
+      return false
+    }
+
     try {
       await fetcher.download(revision, events?.downloadProgress)
       await events?.endDownload?.(true)

@@ -3,7 +3,7 @@ import { ExecutorService } from '@/services/executor/main'
 import { WindowService } from '@/services/window/main'
 import { CredentialService } from '@/services/credential/main'
 import { IoService } from '@/services/io/main'
-import { PluginServices } from '@/services/plugin/main'
+import { PluginService } from '@/services/plugin/main'
 import { ToolService } from '@/services/tool/main'
 
 export interface Services {
@@ -11,7 +11,7 @@ export interface Services {
   window: WindowService
   credential: CredentialService
   io: IoService
-  plugin: PluginServices
+  plugin: PluginService
   tool: ToolService
 }
 
@@ -20,8 +20,8 @@ export const generateServices = (context: MainProcessContext): Services => {
     executor: new ExecutorService(),
     window: new WindowService(context),
     credential: new CredentialService(context),
-    io: new IoService(),
-    plugin: new PluginServices(),
+    io: new IoService(context),
+    plugin: new PluginService(context),
     tool: new ToolService(context),
   }
 }

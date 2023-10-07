@@ -3,6 +3,7 @@ import {
   Box,
   CircularProgress,
   Flex,
+  Icon,
   Image,
   SlideFade,
   Text,
@@ -10,7 +11,7 @@ import {
 
 export const Showcase = (props: { data: Task & TaskContext }) => {
   const {
-    data: { message, icon, loading, progress, result },
+    data: { message, icon, loading, progress, result, finished },
   } = props
 
   return (
@@ -18,9 +19,13 @@ export const Showcase = (props: { data: Task & TaskContext }) => {
       <Box
         borderRadius="md"
         shadow="md"
+        transitionProperty="common"
+        transitionDuration="normal"
         paddingX={1}
         paddingY={2}
-        background={loading || result ? 'gray.50' : 'red.100'}
+        background={
+          loading || !finished ? 'gray.50' : result ? 'green.50' : 'red.100'
+        }
       >
         <Flex gap={4}>
           <Box>
@@ -38,7 +43,7 @@ export const Showcase = (props: { data: Task & TaskContext }) => {
             {message}
           </Text>
           <CircularProgress
-            visibility={loading ? 'visible' : 'hidden'}
+            visibility={!finished && loading ? 'visible' : 'hidden'}
             color="purple.500"
             capIsRound
             value={progress}

@@ -36,11 +36,14 @@ export interface PluginDetail {
   importedDate: string
   localDevPath?: string
   isDefault?: boolean
-  clearable?: boolean
 }
 
 export interface PluginDetailWithConfig extends PluginDetail {
   config: PluginConfig
+}
+
+export interface PluginSearchCondition {
+  type?: PluginType
 }
 
 export * from './credential'

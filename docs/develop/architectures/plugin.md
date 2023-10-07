@@ -14,13 +14,6 @@ random generate id
 
 **optional**, is default plugin, default plugin can not be removed
 
-### clearable
-
-**optional**, when plugin has been updated, keep old version temp for executor running
-
-- clearable plugin should not be display in frontend list
-- all resources about clearable plugin should be removed in preprocess
-
 ### importedDate
 
 YYYY/MM/DD
